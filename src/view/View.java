@@ -1,8 +1,13 @@
 package view;
 
-import java.awt.Component;
+import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -13,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class View {
+
+	private static FileDialog Fsalvar;
 
 	public static void main(String[] args) {
 		JFrame janela = new JFrame("Compilador");
@@ -26,16 +33,59 @@ public class View {
 
 		JMenuItem menuItemSalvar = new JMenuItem("Salvar");
 		JMenuItem menuItemAbrir = new JMenuItem("Abrir");
+		JMenuItem menuItemSair = new JMenuItem("Sair");
+
+		JTextArea textArea = new JTextArea();
+
+		Fsalvar = new FileDialog(janela, "Salvar arquivo", FileDialog.SAVE);
+
 		menuItemAbrir.addActionListener(new ActionListener() {
+			private File f;
+			private RandomAccessFile file;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = new JFileChooser();
-				Component parent = null;
-				int returnVal = chooser.showOpenDialog(parent);
+				int returnVal = chooser.showOpenDialog(null);
+
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+					this.f = chooser.getSelectedFile();
 				}
-				System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+				try {
+					this.file = new RandomAccessFile(this.f, "rw");
+					String linha = "";
+					StringBuffer sTxt = new StringBuffer();
+					while ((linha = this.file.readLine()) != null) {
+						sTxt.append(linha + "\n");
+					}
+					textArea.setText(sTxt.toString());
+					this.file.seek(0);
+				} catch (FileNotFoundException ex) {
+				} catch (IOException ex) {
+				}
+			}
+		});
+
+		menuItemSalvar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (View.Fsalvar.getFile() == null) {
+						return;
+					}
+					String nome = View.Fsalvar.getDirectory() + View.Fsalvar.getFile();
+					FileWriter out = new FileWriter(nome);
+					out.write(textArea.getText());
+					out.close();
+				} catch (java.io.IOException exc) {
+				}
+			}
+		});
+
+		menuItemSair.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
 			}
 		});
 
@@ -44,6 +94,8 @@ public class View {
 
 		menuArquivo.add(menuItemSalvar);
 		menuArquivo.add(menuItemAbrir);
+		menuArquivo.addSeparator();
+		menuArquivo.add(menuItemSair);
 
 		menuAjuda.add(menuItemDocumentao);
 		menuAjuda.add(menuItemSobre);
@@ -57,7 +109,6 @@ public class View {
 
 		janela.setJMenuBar(menubar);
 
-		JTextArea textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		textArea.setEditable(true);
