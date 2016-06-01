@@ -1,0 +1,79 @@
+#Options
+GenerateScanner = true
+GenerateParser = true
+Language = Java
+ScannerName = Lexico
+ParserName = Sintatico
+SemanticName = Semantico
+ScannerCaseSensitive = true
+ScannerTable = Full
+Input = String
+Parser = SLR
+#RegularDefinitions
+L : [a-zA-Z]
+@ : @
+_ : _
+D : [0-9]
+CC : [\ \t\n\r]
+Comment : "/*" [^"*"]* "*" "/"
+#Tokens
+id : ({L} | {@})  ({L}|{D})*
+
+num : {D}+
+
+programa = id : "programa"
+var = id : "var"
+caracter = id : "caracter"
+cadeia = id : "cadeia"
+procedimento = id : "procedimento"
+inicio = id : "inicio"
+fim = id : "fim"
+inteiro = id : "inteiro"
+booleano = id : "booleano"
+funcao = id : "funcao"
+se = id : "se"
+entao = id : "entao"
+senao = id : "senao"
+leia = id : "leia"
+escreva = id : "escreva"
+ou = id : "ou"
+e = id : "e"
+nao = id : "nao"
+falso = id : "falso"
+verdadeiro = id : "verdadeiro"
+de = id : "de"
+faca = id : "faca"
+real = id : "real"
+vetor = id : "vetor"
+enquanto = id : "enquanto"
+
+: {CC}*
+
+:! {Coment}
+
+
+";"
+","
+"."
+">"
+"<"
+"="
+"("
+")"
+"["
+"]"
+"+"
+"-"
+"*"
+"/"
+":"
+
+":="
+".."
+"<>"
+"<="
+
+#NonTerminals
+
+#Grammar
+
