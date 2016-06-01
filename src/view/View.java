@@ -1,5 +1,10 @@
 package view;
 
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -21,6 +26,18 @@ public class View {
 
 		JMenuItem menuItemSalvar = new JMenuItem("Salvar");
 		JMenuItem menuItemAbrir = new JMenuItem("Abrir");
+		menuItemAbrir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				Component parent = null;
+				int returnVal = chooser.showOpenDialog(parent);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+				}
+				System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+			}
+		});
 
 		JMenuItem menuItemDocumentao = new JMenuItem("Documentação");
 		JMenuItem menuItemSobre = new JMenuItem("Sobre");
