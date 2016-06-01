@@ -1,23 +1,20 @@
 #Options
 GenerateScanner = true
-GenerateParser = true
+GenerateParser = false
 Language = Java
 ScannerName = Lexico
-ParserName = Sintatico
-SemanticName = Semantico
-ScannerCaseSensitive = true
+ScannerCaseSensitive = false
 ScannerTable = Full
-Input = String
-Parser = SLR
+Input = Stream
 #RegularDefinitions
 L : [a-zA-Z]
-@ : @
-_ : _
+@ : [@]
+_ : [_]
 D : [0-9]
 CC : [\ \t\n\r]
 Comment : "/*" [^"*"]* "*" "/"
 #Tokens
-id : ({L} | {@})  ({L}|{D})*
+id : {L} | {@} ({L}|{D}) ({L}|{D})* ({L}|{D})*
 
 num : {D}+
 
@@ -46,12 +43,8 @@ faca = id : "faca"
 real = id : "real"
 vetor = id : "vetor"
 enquanto = id : "enquanto"
-
 : {CC}*
-
 :! {Coment}
-
-
 ";"
 ","
 "."
@@ -67,13 +60,8 @@ enquanto = id : "enquanto"
 "*"
 "/"
 ":"
-
 ":="
 ".."
 "<>"
 "<="
-
-#NonTerminals
-
-#Grammar
 
