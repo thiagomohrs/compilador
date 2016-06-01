@@ -44,9 +44,10 @@ public class View {
 			@Override
 			public void menuSelected(MenuEvent e) {
 				System.out.println("menu " + menuLexico.getText() + " Selected");
+
 				String stringToBeParsed = textArea.getText();
 				StringReader reader = new StringReader(stringToBeParsed);
-				Lexico lex = new Lexico(reader);
+				new Lexico(reader);
 			}
 
 			@Override
