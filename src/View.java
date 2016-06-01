@@ -1,4 +1,3 @@
-package view;
 
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
@@ -8,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.io.StringReader;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -26,6 +26,7 @@ public class View {
 	public static void main(String[] args) {
 		JFrame janela = new JFrame("Compilador");
 		JMenuBar menubar = new JMenuBar();
+		JTextArea textArea = new JTextArea();
 		JMenu menuArquivo = new JMenu("Arquivo");
 		JMenu menuLexico = new JMenu("Lexico");
 		JMenu menuSintatico = new JMenu("Sintatico");
@@ -33,11 +34,20 @@ public class View {
 		JMenu menuCodigo = new JMenu("Código");
 		JMenu menuAjuda = new JMenu("Ajuda");
 
+		menuLexico.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String stringToBeParsed = textArea.getText();
+				StringReader reader = new StringReader(stringToBeParsed);
+				Lexico lex = new Lexico();
+				System.out.println(reader);
+				lex.setInput(reader);
+			}
+		});
+
 		JMenuItem menuItemSalvar = new JMenuItem("Salvar");
 		JMenuItem menuItemAbrir = new JMenuItem("Abrir");
 		JMenuItem menuItemSair = new JMenuItem("Sair");
-
-		JTextArea textArea = new JTextArea();
 
 		Fsalvar = new FileDialog(janela, "Salvar arquivo", FileDialog.SAVE);
 
@@ -56,11 +66,11 @@ public class View {
 				try {
 					this.file = new RandomAccessFile(this.f, "rw");
 					String linha = "";
-					StringBuffer sTxt = new StringBuffer();
+					StringBuffer stringBuffer = new StringBuffer();
 					while ((linha = this.file.readLine()) != null) {
-						sTxt.append(linha + "\n");
+						stringBuffer.append(linha + "\n");
 					}
-					textArea.setText(sTxt.toString());
+					textArea.setText(stringBuffer.toString());
 					this.file.seek(0);
 				} catch (FileNotFoundException ex) {
 				} catch (IOException ex) {
