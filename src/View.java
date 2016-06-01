@@ -82,10 +82,12 @@ public class View {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (View.Fsalvar.getFile() == null) {
+					// Fsalvar.show();
+					Fsalvar.setVisible(true);
+					if (Fsalvar.getFile() == null) {
 						return;
 					}
-					String nome = View.Fsalvar.getDirectory() + View.Fsalvar.getFile();
+					String nome = Fsalvar.getDirectory() + Fsalvar.getFile();
 					FileWriter out = new FileWriter(nome);
 					out.write(textArea.getText());
 					out.close();
