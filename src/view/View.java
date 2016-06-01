@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -89,15 +90,30 @@ public class View {
 			}
 		});
 
-		JMenuItem menuItemDocumentao = new JMenuItem("Documentação");
+		JMenuItem menuItemDocumentacao = new JMenuItem("Documentação");
 		JMenuItem menuItemSobre = new JMenuItem("Sobre");
+
+		menuItemDocumentacao.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "\nDocumentação...\n\n");
+			}
+		});
+
+		menuItemSobre.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,
+						"\nUniversidade Federal de Santa Catarina\nSistemas de Informação\n\nCompilador desenvolvido por Raphael Martins e Thiago Mohr para a matéria de INE5622 - Introdução a compiladores\n\n");
+			}
+		});
 
 		menuArquivo.add(menuItemSalvar);
 		menuArquivo.add(menuItemAbrir);
 		menuArquivo.addSeparator();
 		menuArquivo.add(menuItemSair);
 
-		menuAjuda.add(menuItemDocumentao);
+		menuAjuda.add(menuItemDocumentacao);
 		menuAjuda.add(menuItemSobre);
 
 		menubar.add(menuArquivo);
