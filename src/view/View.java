@@ -11,6 +11,7 @@ import java.io.RandomAccessFile;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -104,7 +105,9 @@ public class View {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null,
-						"\nUniversidade Federal de Santa Catarina\nSistemas de Informação\n\nCompilador desenvolvido por Raphael Martins e Thiago Mohr para a matéria de INE5622 - Introdução a compiladores\n\n");
+						new JLabel(
+								"Compilador desenvolvido por Raphael Martins e Thiago Mohr para a matéria de INE5622 - Introdução a compiladores - Universidade Federal de Santa Catarina - Sistemas de Informação",
+								JLabel.CENTER));
 			}
 		});
 
