@@ -1,3 +1,4 @@
+package Gals;
 public interface ScannerConstants
 {
     int[][] SCANNER_TABLE = 

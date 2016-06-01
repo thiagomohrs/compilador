@@ -1,3 +1,4 @@
+package View;
 
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
+
+import Gals.Lexico;
 
 public class View {
 
@@ -34,14 +39,26 @@ public class View {
 		JMenu menuCodigo = new JMenu("Código");
 		JMenu menuAjuda = new JMenu("Ajuda");
 
-		menuLexico.addActionListener(new ActionListener() {
+		menuLexico.addMenuListener(new MenuListener() {
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void menuSelected(MenuEvent e) {
+				System.out.println("menu " + menuLexico.getText() + " Selected");
 				String stringToBeParsed = textArea.getText();
 				StringReader reader = new StringReader(stringToBeParsed);
-				Lexico lex = new Lexico();
-				System.out.println(reader);
-				lex.setInput(reader);
+				Lexico lex = new Lexico(reader);
+			}
+
+			@Override
+			public void menuDeselected(MenuEvent e) {
+				System.out.println("menu " + menuLexico.getText() + " Deselected");
+
+			}
+
+			@Override
+			public void menuCanceled(MenuEvent e) {
+				System.out.println("menu " + menuLexico.getText() + " Canceled");
+
 			}
 		});
 
@@ -146,6 +163,7 @@ public class View {
 
 		JScrollPane scrollPane = new JScrollPane(textArea);
 
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setSize(700, 500);
 		janela.setVisible(true);
 		janela.add(scrollPane);
