@@ -18,6 +18,7 @@ id : ({L}|{A}({L}{A}?|{D}{U}?)|({L}{U}?|{D}{A}?))({L}|{D})*
 
 num : {D}+
 
+//PALAVRAS RESERVADAS
 programa = id : "programa"
 var = id : "var"
 caracter = id : "caracter"
@@ -44,10 +45,13 @@ real = id : "real"
 vetor = id : "vetor"
 enquanto = id : "enquanto"
 
+//IGNORAR 
 : {CC}*
 
+//COMENTARIOS
 :! {Comment}
 
+//OPERADORES - Símbolos especiais
 ";"
 ","
 "."

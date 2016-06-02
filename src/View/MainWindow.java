@@ -24,11 +24,11 @@ import javax.swing.event.MenuListener;
 
 import Gals.Lexico;
 
-public class View {
+public class MainWindow {
 
 	private static FileDialog Fsalvar;
 
-	public static void main(String[] args) {
+	public static void init() {
 		JFrame janela = new JFrame("Compilador");
 		JMenuBar menubar = new JMenuBar();
 		JTextArea textArea = new JTextArea();
@@ -100,7 +100,6 @@ public class View {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					// Fsalvar.show();
 					Fsalvar.setVisible(true);
 					if (Fsalvar.getFile() == null) {
 						return;
@@ -168,5 +167,9 @@ public class View {
 		janela.setSize(700, 500);
 		janela.setVisible(true);
 		janela.add(scrollPane);
+	}
+
+	public static void main(String[] args) {
+		init();
 	}
 }
