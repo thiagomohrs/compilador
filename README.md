@@ -37,7 +37,7 @@ sintática da LSI161
 	* Termina no final da linha
 	
 * Comentários de bloco
-	* notação: qualquer sequência de caracteres entre os delimitadores /* e */ - pode conter “*” e “/”, mas não “*/”.
+	* notação: qualquer sequência de caracteres entre os delimitadores /* e */ - pode conter "*\*" e “/”, mas não “*/”.
 	* não analisar sequências de caracteres internas
 	* sem limite de tamanho
 	* comentário não fechado = erro léxico
