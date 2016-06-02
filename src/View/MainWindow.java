@@ -27,17 +27,17 @@ import Gals.Lexico;
 public class MainWindow {
 
 	private static FileDialog Fsalvar;
-
-	public static void init() {
-		JFrame janela = new JFrame("Compilador");
-		JMenuBar menubar = new JMenuBar();
-		JTextArea textArea = new JTextArea();
-		JMenu menuArquivo = new JMenu("Arquivo");
-		JMenu menuLexico = new JMenu("Lexico");
-		JMenu menuSintatico = new JMenu("Sintatico");
-		JMenu menuSemantico = new JMenu("Semantico");
-		JMenu menuCodigo = new JMenu("Código");
-		JMenu menuAjuda = new JMenu("Ajuda");
+	private static JTextArea textArea = new JTextArea();
+	
+	public static void main(String[] args){
+		final JFrame janela = new JFrame("Compilador");
+		final JMenuBar menubar = new JMenuBar();
+		final JMenu menuArquivo = new JMenu("Arquivo");
+		final JMenu menuLexico = new JMenu("Lexico");
+		final JMenu menuSintatico = new JMenu("Sintatico");
+		final JMenu menuSemantico = new JMenu("Semantico");
+		final JMenu menuCodigo = new JMenu("Código");
+		final JMenu menuAjuda = new JMenu("Ajuda");
 
 		menuLexico.addMenuListener(new MenuListener() {
 
@@ -63,9 +63,9 @@ public class MainWindow {
 			}
 		});
 
-		JMenuItem menuItemSalvar = new JMenuItem("Salvar");
-		JMenuItem menuItemAbrir = new JMenuItem("Abrir");
-		JMenuItem menuItemSair = new JMenuItem("Sair");
+		final JMenuItem menuItemSalvar = new JMenuItem("Salvar");
+		final JMenuItem menuItemAbrir = new JMenuItem("Abrir");
+		final JMenuItem menuItemSair = new JMenuItem("Sair");
 
 		Fsalvar = new FileDialog(janela, "Salvar arquivo", FileDialog.SAVE);
 
@@ -120,8 +120,8 @@ public class MainWindow {
 			}
 		});
 
-		JMenuItem menuItemDocumentacao = new JMenuItem("Documentação");
-		JMenuItem menuItemSobre = new JMenuItem("Sobre");
+		final JMenuItem menuItemDocumentacao = new JMenuItem("Documentação");
+		final JMenuItem menuItemSobre = new JMenuItem("Sobre");
 
 		menuItemDocumentacao.addActionListener(new ActionListener() {
 			@Override
@@ -167,9 +167,5 @@ public class MainWindow {
 		janela.setSize(700, 500);
 		janela.setVisible(true);
 		janela.add(scrollPane);
-	}
-
-	public static void main(String[] args) {
-		init();
 	}
 }
