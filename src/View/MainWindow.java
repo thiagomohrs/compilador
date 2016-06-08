@@ -3,6 +3,7 @@ package View;
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -28,8 +29,8 @@ public class MainWindow {
 
 	private static FileDialog Fsalvar;
 	private static JTextArea textArea = new JTextArea();
-	
-	public static void main(String[] args){
+
+	public static void main(String[] args) {
 		final JFrame janela = new JFrame("Compilador");
 		final JMenuBar menubar = new JMenuBar();
 		final JMenu menuArquivo = new JMenu("Arquivo");
@@ -39,6 +40,13 @@ public class MainWindow {
 		final JMenu menuCodigo = new JMenu("Código");
 		final JMenu menuAjuda = new JMenu("Ajuda");
 
+		menuLexico.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				// TODO fazer por esse método
+			}
+		});
 		menuLexico.addMenuListener(new MenuListener() {
 
 			@Override
@@ -63,9 +71,9 @@ public class MainWindow {
 			}
 		});
 
-		final JMenuItem menuItemSalvar = new JMenuItem("Salvar");
-		final JMenuItem menuItemAbrir = new JMenuItem("Abrir");
-		final JMenuItem menuItemSair = new JMenuItem("Sair");
+		final JMenuItem menuItemSalvar = new JMenuItem("Salvar", KeyEvent.VK_S);
+		final JMenuItem menuItemAbrir = new JMenuItem("Abrir", KeyEvent.VK_O);
+		final JMenuItem menuItemSair = new JMenuItem("Sair", KeyEvent.VK_E);
 
 		Fsalvar = new FileDialog(janela, "Salvar arquivo", FileDialog.SAVE);
 
